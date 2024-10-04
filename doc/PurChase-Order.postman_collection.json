@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "8f7bff9e-a0db-4a9b-a247-53a3ea322c27",
+		"name": "PurChase-Order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20727504"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fristName\" : \"Tom\",\r\n    \"lastName\" : \"Cruise\",\r\n    \"email\" : \"tomcruise@gmail.com\",\r\n    \"phone\" : \"0818213144e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5445/api/user/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"user",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"Tom\",\r\n    \"lastName\" : \"Cruise\",\r\n    \"email\" : \"tomcruise@gmail.com\",\r\n    \"phone\" : \"08182131434\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5445/api/user/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"user",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5445/api/user/delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"user",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Item",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Lemari\",\r\n    \"description\" : \"Lemari Pakaian\",\r\n    \"price\" : 500000,\r\n    \"cost\" : 100000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5445/api/item/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"item",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Lemari\",\r\n    \"description\" : \"Lemari Pakaian\",\r\n    \"price\" : 500000,\r\n    \"cost\" : 100000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5445/api/item/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"item",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5445/api/item/list-item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"item",
+								"list-item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5445/api/item/detail/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"item",
+								"detail",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5445/api/item/delete/52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"item",
+								"delete",
+								"52"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Purchase_Order Header",
+			"item": [
+				{
+					"name": "create-header",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\" : \"Jalan Tanah Koja, Jatinegara Kaum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5445/api/po/header/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"po",
+								"header",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list-header",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get-one header",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update-hedaer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5445/api/po/header/detail/53",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"po",
+								"header",
+								"detail",
+								"53"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-header",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5445/api/po/header/delete/55",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"po",
+								"header",
+								"delete",
+								"55"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Purchase_Order Detail",
+			"item": [
+				{
+					"name": "create-detail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"poHeader\": {\r\n        \"pohId\": 1\r\n    },\r\n    \"item\": {\r\n        \"itemId\": 2\r\n    },\r\n    \"itemQty\": 10\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5445/api/po/detail/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"po",
+								"detail",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list-detail",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get-one detail",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update-detail",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5445/api/po/detail/update-detail/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5445",
+							"path": [
+								"api",
+								"po",
+								"detail",
+								"update-detail",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
