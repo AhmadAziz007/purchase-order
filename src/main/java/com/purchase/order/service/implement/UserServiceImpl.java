@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<?> createUser(UserDTO userDTO) {
         try {
+
             if (userDTO.getFirstName() == null ||
                 userDTO.getLastName() == null ||
                 userDTO.getEmail() == null ||

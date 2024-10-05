@@ -2,8 +2,10 @@ package com.purchase.order.service.implement;
 
 import com.purchase.order.Repository.PoDetailRepository;
 import com.purchase.order.Repository.PoHeaderRepository;
+import com.purchase.order.Repository.UserRepository;
 import com.purchase.order.dto.PoHeaderDTO;
 import com.purchase.order.model.PoHeader;
+import com.purchase.order.model.User;
 import com.purchase.order.service.PoHeaderService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -20,16 +23,30 @@ public class PoHeaderServiceImpl implements PoHeaderService {
     @Autowired
     private PoHeaderRepository poHeaderRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public ResponseEntity<?> createPoHeader(PoHeaderDTO poHeaderDTO) {
         try {
+            List<User> users = userRepository.findAll();
+
+            String firstName = users.stream()
+                    .map(User::getFirstName)
+                    .collect(Collectors.joining(", "));
+
+            String lastName = users.stream()
+                    .map(User::getLastName)
+                    .collect(Collectors.joining(", "));
+
+            String createdBy = firstName + " " + lastName;
 
             PoHeader poHeader = new PoHeader();
             poHeader.setDatetime(new Date());
             poHeader.setDescription(poHeaderDTO.getDescription());
             poHeader.setTotalPrice(poHeaderDTO.getTotalPrice());
             poHeader.setTotalCost(poHeaderDTO.getTotalCost());
-            poHeader.setCreatedBy("Admin");
+            poHeader.setCreatedBy(createdBy);
             poHeader.setCreatedDatetime(new Date());
 
             PoHeader savedPoHeader = poHeaderRepository.save(poHeader);
@@ -43,12 +60,23 @@ public class PoHeaderServiceImpl implements PoHeaderService {
     public ResponseEntity<?> updatePoHeader(Long pohId, PoHeaderDTO poHeaderDTO) {
         Optional<PoHeader> poHeaderOpt = poHeaderRepository.findByPohId(pohId);
         if (poHeaderOpt.isPresent()) {
-            PoHeader poHeader = poHeaderOpt.get();
+            List<User> users = userRepository.findAll();
 
+            String firstName = users.stream()
+                    .map(User::getFirstName)
+                    .collect(Collectors.joining(", "));
+
+            String lastName = users.stream()
+                    .map(User::getLastName)
+                    .collect(Collectors.joining(", "));
+
+            String createdBy = firstName + " " + lastName;
+
+            PoHeader poHeader = poHeaderOpt.get();
             poHeader.setDescription(poHeaderDTO.getDescription());
             poHeader.setTotalPrice(poHeaderDTO.getTotalPrice());
             poHeader.setTotalCost(poHeaderDTO.getTotalCost());
-            poHeader.setUpdatedBy("Admin");
+            poHeader.setUpdatedBy(createdBy);
             poHeader.setUpdatedDatetime(new Date());
 
             PoHeader updatedPoHeader = poHeaderRepository.save(poHeader);

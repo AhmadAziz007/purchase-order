@@ -3,11 +3,13 @@ package com.purchase.order.service.implement;
 import com.purchase.order.Repository.ItemRepository;
 import com.purchase.order.Repository.PoDetailRepository;
 import com.purchase.order.Repository.PoHeaderRepository;
+import com.purchase.order.Repository.UserRepository;
 import com.purchase.order.dto.PODetailDTOView;
 import com.purchase.order.dto.PoDetailDTO;
 import com.purchase.order.model.Item;
 import com.purchase.order.model.PoDetail;
 import com.purchase.order.model.PoHeader;
+import com.purchase.order.model.User;
 import com.purchase.order.service.PoDetailService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -33,9 +36,24 @@ public class PoDetailServiceImpl implements PoDetailService {
     @Autowired
     private ItemRepository itemRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public ResponseEntity<?> createPoDetail(PoDetailDTO poDetailDTO) {
         try {
+            List<User> users = userRepository.findAll();
+
+            String firstName = users.stream()
+                    .map(User::getFirstName)
+                    .collect(Collectors.joining(", "));
+
+            String lastName = users.stream()
+                    .map(User::getLastName)
+                    .collect(Collectors.joining(", "));
+
+            String createdBy = firstName + " " + lastName;
+
             Optional<PoHeader> poHeaderOpt = poHeaderRepository.findById(poDetailDTO.getPoHeader().getPohId());
             Optional<Item> itemOpt = itemRepository.findById(poDetailDTO.getItem().getItemId());
 
@@ -52,7 +70,7 @@ public class PoDetailServiceImpl implements PoDetailService {
                 poDetail.setItemQty(poDetailDTO.getItemQty());
                 poDetail.setItemPrice(calculatedItemPrice);
                 poDetail.setItemCost(calculatedItemCost);
-                poDetail.setCreatedBy("Admin");
+                poDetail.setCreatedBy(createdBy);
                 poDetail.setCreatedDatetime(new Date());
 
                 PoDetail savedPoDetail = poDetailRepository.save(poDetail);
